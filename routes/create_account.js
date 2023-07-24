@@ -8,11 +8,11 @@ import {AccountCategory, AccountType} from "../src/Account/model.ts";
 router.get('/', function (req, res, next) {
     return new Promise((resolve, reject) => {
         AccountFactory.create_account(
-            AccountCategory.CREDIT,
-            AccountType.LIABILITY,
-            "Amex Gold",
-            "American Express",
-            0.0
+            req.body.category,
+            req.body.type,
+            req.body.name,
+            req.body.institution,
+            req.body.balance
         ).then((account_id) => {
             res.status(200).json({name: account_id})
             resolve();
